@@ -1,0 +1,50 @@
+[
+    {
+        "nazwa": "Grupa1",
+        "haslo": "",
+        "uzytkownicy": [
+            {
+                "nick": "nick1",
+                "haslo": "haslo1",
+                "zdjecie": "../sample.jpg"
+            },
+            {
+                "nick": "nick1",
+                "haslo": "haslo1",
+                "zdjecie": "./sample.jpg"
+            },
+            {
+                "nick": "nick1",
+                "haslo": "haslo1",
+                "zdjecie": "../sample.jpg"
+            }
+        ]
+    },
+    {
+        "nazwa": "Grupa2",
+        "haslo": "",
+        "uzytkownicy": [
+            {
+                "nick": "nick1",
+                "haslo": "haslo1",
+                "zdjecie": "../sample.jpg"
+            }
+        ]
+    },
+    {
+        "nazwa": "Grupa3",
+        "haslo": "qwerty",
+        "uzytkownicy": [
+            {
+                "nick": "nick1",
+                "haslo": "haslo1",
+                "zdjecie": "../sample.jpg"
+            },
+            {
+                "nick": "nick1",
+                "haslo": "haslo1",
+                "zdjecie": "../sample.jpg"
+            }
+        ]
+    }
+]

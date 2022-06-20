@@ -1,0 +1,170 @@
+    [
+    {
+      "id": 0,
+      "nazwa": "Tablica 1",
+      "notatki": [
+        {
+          "id": 0,
+          "tytul": "Tytuł 1",
+          "tresc": "Treść notatki 1",
+          "data": "2022-05-01",
+          "priorytet": 1,
+          "tagi":["abc","aai"]
+        },
+    
+        {
+            "id": 1,
+            "tytul": "Tytuł 2",
+            "tresc": "Treść notatki 2",
+            "data": "2022-05-01",
+            "priorytet": 2,
+            "tagi":["abc"]
+          },
+    
+          {
+            "id": 2,
+            "tytul": "Tytuł 3",
+            "tresc": "Treść notatki 3",
+            "data": "2022-05-01",
+            "priorytet": 3,
+            "tagi":[]
+          },
+          {
+            "id": 3,
+            "tytul": "Tytuł 4",
+            "tresc": "Treść notatki 4",
+            "data": "2022-05-01",
+            "priorytet": 3,
+            "tagi":[]
+          }
+      ]
+    },
+    {
+        "id": 1,
+        "nazwa": "Tablica 2",
+        "notatki": [
+          {
+            "id": 3,
+            "tytul": "Tytuł 4",
+            "tresc": "Treść notatki 1",
+            "data": "2022-05-01",
+            "priorytet": 1,
+            "tagi":["abc","aai"]
+          },
+      
+          {
+              "id": 4,
+              "tytul": "Tytuł 5",
+              "tresc": "Treść notatki 2",
+              "data": "2022-05-01",
+              "priorytet": 2,
+              "tagi":["abc"]
+            },
+      
+            {
+              "id": 5,
+              "tytul": "Tytuł 6",
+              "tresc": "Treść notatki 3",
+              "data": "2022-05-01",
+              "priorytet": 3,
+              "tagi":[]
+            }
+        ]
+      },
+      {
+        "id": 1,
+        "nazwa": "Tablica 3",
+        "notatki": [
+          {
+            "id": 3,
+            "tytul": "Tytuł 4",
+            "tresc": "Treść notatki 1",
+            "data": "2022-05-01",
+            "priorytet": 1,
+            "tagi":["abc","aai"]
+          },
+      
+          {
+              "id": 4,
+              "tytul": "Tytuł 5",
+              "tresc": "Treść notatki 2",
+              "data": "2022-05-01",
+              "priorytet": 2,
+              "tagi":["abc"]
+            },
+      
+            {
+              "id": 5,
+              "tytul": "Tytuł 6",
+              "tresc": "Treść notatki 3",
+              "data": "2022-05-01",
+              "priorytet": 3,
+              "tagi":[]
+            }
+        ]
+      },
+      {
+        "id": 1,
+        "nazwa": "Tablica 4",
+        "notatki": [
+          {
+            "id": 3,
+            "tytul": "Tytuł 4",
+            "tresc": "Treść notatki 1",
+            "data": "2022-05-01",
+            "priorytet": 1,
+            "tagi":["abc","aai"]
+          },
+      
+          {
+              "id": 4,
+              "tytul": "Tytuł 5",
+              "tresc": "Treść notatki 2",
+              "data": "2022-05-01",
+              "priorytet": 2,
+              "tagi":["abc"]
+            },
+      
+            {
+              "id": 5,
+              "tytul": "Tytuł 6",
+              "tresc": "Treść notatki 3",
+              "data": "2022-05-01",
+              "priorytet": 3,
+              "tagi":[]
+            }
+        ]
+      },
+      {
+        "id": 1,
+        "nazwa": "Tablica 5",
+        "notatki": [
+          {
+            "id": 3,
+            "tytul": "Tytuł 4",
+            "tresc": "Treść notatki 1",
+            "data": "2022-05-01",
+            "priorytet": 1,
+            "tagi":["abc","aai"]
+          },
+      
+          {
+              "id": 4,
+              "tytul": "Tytuł 5",
+              "tresc": "Treść notatki 2",
+              "data": "2022-05-01",
+              "priorytet": 2,
+              "tagi":["abc"]
+            },
+      
+            {
+              "id": 5,
+              "tytul": "Tytuł 6",
+              "tresc": "Treść notatki 3",
+              "data": "2022-05-01",
+              "priorytet": 3,
+              "tagi":[]
+            }
+        ]
+      }
+  ]
