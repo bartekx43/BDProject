@@ -15,16 +15,8 @@ import { RiCloseFill } from "react-icons/ri";
 import TextEditor from "./TextEditor.js";
 import axios from 'axios';
 
-const AddTask = ({
-  tytul,
-  tresc,
-  data,
-  priorytet,
-  tagi,
-  funkcja,
-  onClose,
-}) => {
-  const content = ContentState.createFromText(tresc);
+const AddTask = (props) => {
+  const content = ContentState.createFromText(props.tresc);
 
   const [editorState, setEditorState] = useState(() =>
     EditorState.createWithContent(content)
@@ -34,11 +26,12 @@ const AddTask = ({
     console.log(editorState);
   }, [editorState]);
 
-  const [startDate, setStartDate] = React.useState(new Date(data));
-  const [prior, setPriorytet] = React.useState(priorytet);
-  const [tyt, setTytul] = React.useState(tytul);
-  const [tr, setTresc] = React.useState(tresc);
+  const [startDate, setStartDate] = React.useState(new Date(props.data));
+  const [prior, setPriorytet] = React.useState(props.priorytet);
+  const [tyt, setTytul] = React.useState(props.tytul);
+  const [tr, setTresc] = React.useState(props.tresc);
   const [value, setValue] = React.useState("");
+  const [tagi, setTagi] = React.useState(props.tagi);
 
   async function handleOnClick() {
     // var text = editorState.getCurrentContent().getBlocksAsArray();
@@ -61,16 +54,36 @@ const AddTask = ({
         else newText += block + "\n";
       }
 
+      var noteId
+      var boardNotes = []
+
       setTresc(newText);
       await axios.post("http://localhost:8080/notes", {
         "title": tyt,
         "contents": tr,
-        "userIds": ["sd123gssli12j", "1209sdjklsdngr4p"],
+        "userIds": [props.userId],
         "groupIds": ["2131asdafspiqfwikwp"],
         "priority": prior,
-        "date": startDate
+        "date": startDate,
+        "tags": tagi
         });
-      await funkcja('board');
+      await props.funkcja('board');
+
+      await axios.get("http://localhost:8080/notes").then((res)=>
+      {
+        noteId = res.data["_embedded"]["notes"].at(-1)["id"]
+      })
+      console.log("Board id:" + props.boardId);
+      await axios.get("http://localhost:8080/boards/" + props.boardId).then((res)=>
+      {
+        boardNotes = res.data["notesIds"]
+      })
+
+      await axios.patch("http://localhost:8080/boards/" + props.boardId, 
+        { "notesIds": [...boardNotes, noteId] }
+      );
+
+      await props.funkcja('board');
     }
   }
 
@@ -97,7 +110,7 @@ const AddTask = ({
               borderRadius: "12px",
               textAlign: "center",
             }}
-            defaultValue={tytul}
+            defaultValue={props.tytul}
             onChange={(e) => setTytul(e.target.value)}
           />
           <DatePicker
@@ -138,7 +151,7 @@ const AddTask = ({
   wrapperClassName="wrapperClassName"
   editorClassName="editorClassName"
           />  */}
-          <TextEditor setValue={setValue} tresc={tresc} fun={setTresc} />
+          <TextEditor setValue={setValue} tresc={props.tresc} fun={setTresc} />
         </div>
         <input
           style={{
@@ -149,7 +162,7 @@ const AddTask = ({
             marginTop: "10px",
           }}
           defaultValue={tagi}
-
+          onChange={(e) => setTagi(((e.target.value+" ").replace(/\s/g, '')).split(","))}
         />
         <Button
           //fun={() => {setShowEditor(false)}}

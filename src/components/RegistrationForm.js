@@ -112,7 +112,7 @@ value={password} type="password" />
 <Button
           marginesTop={"2vh"}
           margines={"0 auto"}
-          text={"Zarejstruj"}
+          text={"Zarejestruj"}
           fun={handleSubmit}
           color={"white"}
         />

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Image } from "react-native";
 import Button from "./Button";
 import GroupsJson from "../Groups.json";
+import axios from 'axios';
 
 const Groups = (props) => {
   const [option, setOption] = useState("lista");
@@ -280,7 +281,7 @@ const Groups = (props) => {
               margines={"0 auto"}
               text={"Dołącz do grupy"}
               fun={() => {
-                alert("dołączanie");
+                alert();
               }}
               color={"white"}
             />

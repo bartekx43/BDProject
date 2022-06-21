@@ -24,13 +24,13 @@ const Settings = (props) => {
         <h3 style={{ color: 'lightGray' }}>Format notatek:</h3>
         <Select placeholder = "Wybierz format notatek" options={options} defaultValue={"lista"} onChange={ (value) => { props.changeFormat(value.value)} }/>
         <h3 style={{ color: 'lightGray'}}>Wielkość tytułu:</h3>
-            <NumericInput min={0} max={50} defaultValue={25} onChange={ (size) => { props.changeTitleSize(size) } }/>
-            <h3 style={{ color: 'lightGray' }}>Wielkość tekstu:</h3>
-            <NumericInput min={0} max={50} defaultValue={15} onChange={ (size) => { props.changeTextSize(size) } }/>
+            <NumericInput step={1} min={0} max={50} defaultValue={25} onChange={ (size) => { props.changeTitleSize(size) } }/>
+            {/* <h3 style={{ color: 'lightGray' }}>Wielkość tekstu:</h3>
+            <NumericInput step={1} min={0} max={50} defaultValue={15} onChange={ (size) => { props.changeTextSize(size) } }/> */}
         <div>
         
         <div style={{float: "left", margin: "10px"}}>
-        <h3 style={{ color: 'lightGray' }}>Kolor tła:</h3>
+        <h3 style={{ color: 'lightGray' }}>Kolor tytułu:</h3>
         <SketchPicker 
             color={ props.bgColor } 
             onChangeComplete={ handleBgColor }/>

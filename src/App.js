@@ -21,6 +21,13 @@ import axios from 'axios';
 
 function App() {
 
+  // axios.post('http://localhost:8080/_login',{
+  //         "username" : 'debug',
+  //         "password" : 'pass'
+  //         }
+
+  //       );
+
   //PSEUDO BAZA DANYCH NOTATEK
   const Boards = [];
   
@@ -36,8 +43,8 @@ function App() {
 
   const [boardState, setBoardState] = useState('pies');
   const [ac, setAc] = useState([]);
-  const [flag, SetFlag] = React.useState(0);
-  const [userId, SetUserId] = React.useState("62af0c64c30c6b2a03e460b0");
+  const [flag, setFlag] = React.useState(0);
+  const [userId, SetUserId] = React.useState("62b103611231000f0050fb87");
   const [aa, seta] = React.useState([]);
   const [user, SetUser] = React.useState([]);
   
@@ -85,45 +92,50 @@ function App() {
     const r1 = await setGet('board');
   }
 
-  async function setGet(stan)
+  async function setGet(stan, logged=1)
   {
-    var x=[];
-    const rz = await axios.get('http://localhost:8080/notes').then(res => {  
-      SetNotes(res.data["_embedded"]["notes"]);
-    });
+    //alert("USER: " + user);
+    //alert("USERID: " + userId);
+    console.log(user);
+    console.log("user_id:  " + userId);
 
-    const r = await axios.get('http://localhost:8080/boards/search/findAllByUserId?userId='+userId).then(res => {  
-      setBoards(res.data["_embedded"]["boards"]);
-      x = res.data["_embedded"]["boards"];
-      console.log(boards);
-    });
-
-    if(boardsId=='')
-    {
-      setBoardId(x[0].id);
-      const r2= await axios.get('http://localhost:8080/notes/search/findAllByBoardId?id='+x[0].id).then(res => {
-        seta(res.data);
-        console.log("if");
+    if(logged != 0){
+      var x=[];
+      const rz = await axios.get('http://localhost:8080/notes').then(res => {  
+        SetNotes(res.data["_embedded"]["notes"]);
       });
-    }else{
-      const r2= await axios.get('http://localhost:8080/notes/search/findAllByBoardId?id='+boardsId).then(res => { 
-      seta(res.data);
-      console.log("else");
+      
+      console.log("tmp: " + userId);
+      const r = await axios.get('http://localhost:8080/boards/search/findAllByUserId?userId='+userId).then(res => {  
+        setBoards(res.data["_embedded"]["boards"]);
+        x = res.data["_embedded"]["boards"];
+        console.log(boards);
+      });
+
+      if(boardsId=='')
+      {
+        setBoardId(x[0].id);
+        const r2= await axios.get('http://localhost:8080/notes/search/findAllByBoardId?id='+x[0].id).then(res => {
+          seta(res.data);
+          console.log("if");
+        });
+      }else{
+        const r2= await axios.get('http://localhost:8080/notes/search/findAllByBoardId?id='+boardsId).then(res => { 
+        seta(res.data);
+        console.log("else");
+        });
+      }
+
+      const r3= await axios.get('http://localhost:8080/users/'+userId).then(res => { 
+        SetUser(res.data);
+        console.log("else");
+      });
+
+      const r4 = await axios.get('http://localhost:8080/groups/search/findAllByMemberId?memberId='+userId).then(res => { 
+        SetGroups(res.data["_embedded"]["groups"]);
+        console.log(res.data);
       });
     }
-
-    const r3= await axios.get('http://localhost:8080/users/'+userId).then(res => { 
-      SetUser(res.data);
-      console.log("else");
-    });
-
-    const r4 = await axios.get('http://localhost:8080/groups/search/findAllByMemberId?memberId='+userId).then(res => { 
-      SetGroups(res.data["_embedded"]["groups"]);
-      console.log(res.data);
-    });
-
-
-
     console.log(boardsId);
     setBoardState(stan);
     
@@ -175,7 +187,8 @@ function App() {
       else{
         return (
           <div className="App" style={{background: bgColor}}>
-            <Nav changeBoardState={setGet} tytul={boards[0].name}/>
+            
+            <Nav changeBoardState={setGet} tytul={"Tablica"}/>
             <Board 
                   textColor={textColor}
                   textSize={textSize}
@@ -283,7 +296,8 @@ const addTaskState = () => (
     priorytet={priorytet}
     tagi={tagi}
     id={id}
-    usersId={usersId}
+    userId={userId}
+    boardId={boardsId}
     usersList={usersList}
     funkcja={setGet}/>
 </div>
@@ -311,7 +325,7 @@ const registerState = () => (
    <Button 
    margines={'0 auto'}
    text={"Wróć do logowania"} 
-   fun={() => {setGet('login')}}
+   fun={() => {setGet('login', 0)}}
    color={"white"}/>
    </div>
 
@@ -321,7 +335,7 @@ const registerState = () => (
 
 const defaultState = () => (
   <div className="App" style={{display:'flex', background: bgColor}}>
-	<LoginForm changeBoardState={setGet} changeUserID={SetUserId}/>
+	<LoginForm changeBoardState={setGet} changeUserID={SetUserId} changeFlag={setFlag}/>
   </div>
 )
 

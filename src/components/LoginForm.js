@@ -54,8 +54,8 @@ const handleSubmit = (e) => {
             if (response.status === 200)
             { 
 
-              alert("Zalogowano");
-              props.changeUserID(response.data);
+              props.changeFlag(1);
+              //props.changeUserID(response.data.toString());
               props.changeBoardState('board');
 
 
@@ -109,8 +109,8 @@ const handleSubmit = (e) => {
   <Button
             marginesTop={"2vh"}
             margines={"0 auto"}
-            text={"Zarejstruj"}
-            fun={() => props.changeBoardState('register')}
+            text={"Zarejestruj"}
+            fun={() => props.changeBoardState('register', 0)}
             color={"white"}
           />  
   </div>

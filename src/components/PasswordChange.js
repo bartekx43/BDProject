@@ -11,26 +11,37 @@ const [new2, SetNew2] = React.useState('');
 
 async function ChangePass()
 {
-    if(old == props.user.hash && new1==new2)
-    {
-        const r1 = await axios.patch('http://localhost:8080/users/'+props.user.id, {
-            hash: new1
-        })
-        .then(function (response) {
-            console.log(response);
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
-        alert("Zmieniono hasło!")
-    }
-    else if (old != props.user.hash)
-    {
-        alert("Błędne stare hasło!")
-    }
-    else if (new1!=new2)
+    // if(old == props.user.hash && new1==new2)
+    // {
+    //     const r1 = await axios.patch('http://localhost:8080/users/'+props.user.id, {
+    //         hash: new1
+    //     })
+    //     .then(function (response) {
+    //         console.log(response);
+    //     })
+    //     .catch(function (error) {
+    //         console.log(error);
+    //     });
+    //     alert("Zmieniono hasło!")
+    // }
+    // else if (old != props.user.hash)
+    // {
+    //     alert("Błędne stare hasło!")
+    // }
+    //else 
+    if (new1!=new2)
     {
         alert("Podane hasła różnią się!")
+    }
+    else
+    {
+        console.log(props.user.username)
+        axios.post('http://localhost:8080/_changePassword', 
+        {
+            "username": props.user.username,
+            "oldpassword": old,
+            "newpassword": new1
+        })
     }
 }
 

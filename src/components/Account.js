@@ -98,7 +98,7 @@ const Account = (props) => {
             margines={"0 auto"}
             text={"Wyloguj"}
             fun={() => {
-              alert("wylogowano");
+              props.changeBoardState('defaultState');
             }}
             color={"white"}
           />
